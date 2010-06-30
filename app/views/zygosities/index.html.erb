@@ -1,0 +1,20 @@
+<h1>Listing zygosities</h1>
+
+<table>
+  <tr>
+    <th>Import code</th>
+  </tr>
+
+<% @zygosities.each do |zygosity| %>
+  <tr>
+    <td><%=h zygosity.import_code %></td>
+    <td><%= link_to 'Show', zygosity %></td>
+    <td><%= link_to 'Edit', edit_zygosity_path(zygosity) %></td>
+    <td><%= link_to 'Destroy', zygosity, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New zygosity', new_zygosity_path %>

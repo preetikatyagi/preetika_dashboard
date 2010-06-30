@@ -1,0 +1,9 @@
+<%= render :partial => 'search/results_meta' %>
+<%= render :partial => 'search/results_sources' if @sources.length > 0 %>
+<%= render :partial => 'search/results_concepts' if @concepts.length > 0  %>
+<%= render :partial => 'search/results_drugs' if @drugs.length > 0  %>
+<%= render :partial => 'search/results_genes' if @genes.length > 0  %>
+
+<script type="text/javascript">
+	Element.show('results')
+</script>

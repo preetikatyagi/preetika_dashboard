@@ -1,0 +1,10 @@
+<h1><%= @title = "Add Orientation" %></h1>
+
+<% form_for(@orientation) do |f| %>
+  <%= f.error_messages %>
+	<%= render :partial => 'fields', :locals => {:f => f} %>
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

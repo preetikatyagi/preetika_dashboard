@@ -1,0 +1,8 @@
+<tr class="<%= cycle('light', 'dark', :name => 'phenotype_row') %>">
+  <td><%= link_to h(row.name), row %></td>
+  <td><%= row.concepts.count %></td>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_phenotype_path(row) %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+</tr>

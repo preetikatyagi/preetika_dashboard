@@ -1,0 +1,31 @@
+<h1><%= @title = "#{h(@orientation.name)} (Orientation)" %></h1>
+<%= link_to image_tag('icons/pencil.png'), edit_orientation_path(@orientation), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), orientations_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @orientation, :confirm => 'Are you really, really sure?', :method => :delete %>
+
+<p>
+  <b>Name:</b>
+  <%= h @orientation.name %>
+</p>
+
+
+<h2>Sensitivity Concepts</h2>
+<% if @orientation.concepts.size > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Genes</th>
+		<th>Treatments</th>
+		<th>Parent Concepts</th>
+		<th>Child Concepts</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'concepts/row', :collection => @orientation.concepts %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %>

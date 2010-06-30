@@ -1,0 +1,12 @@
+
+<p>
+	<% patients = Role.find_by_code('sequencer').users_including_admins.sort {|a,b| a.name <=> b.name }.collect {|i| [ h(i.name), i.id ]} %>
+	<%= f.label :importer_id %>
+	<%= f.select("importer_id", patients, { :include_blank => false, :selected => (@defaults ? @defaults[:importer_id].to_i : @import.importer_id) }) %>
+</p>
+
+<p>
+	<% patients = Role.find_by_code('patient').users.sort {|a,b| a.name <=> b.name }.collect {|i| [ h(i.name), i.id ]} %>
+	<%= f.label :patient_id %>
+	<%= f.select("patient_id", patients, { :include_blank => false, :selected => (@defaults ? @defaults[:patient_id].to_i : @import.patient_id) }) %>
+</p>

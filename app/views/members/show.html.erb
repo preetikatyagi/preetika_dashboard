@@ -1,0 +1,14 @@
+<h1><%= @title = "#{h(@member.gene.hugo_id)} In #{h(@member.concept.name)} (Treatment)" %></h1>
+<%= link_to image_tag('icons/pencil.png'), edit_member_path(@member), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), members_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @member, :confirm => 'Are you really, really sure?', :method => :delete %>
+
+<p>
+  <b>Gene:</b>
+  <%= link_to h(@member.gene.hugo_id), @member.gene %>
+</p>
+
+<p>
+  <b>Sensitivity Concept:</b>
+  <%= link_to h(@member.concept.name), @member.concept %>
+</p>

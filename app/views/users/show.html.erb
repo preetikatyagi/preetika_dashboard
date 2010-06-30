@@ -1,0 +1,25 @@
+<h1><%= @title = h("#{@user.name} (#{@user.login})") %></h1>
+<% if current_user.has_role? :administrator %>
+<%= link_to image_tag('icons/application_view_list.png'), users_path, :class => 'quick_link' %>
+<% end %>
+
+<% if @user == current_user %>
+	<%= link_to image_tag('icons/pencil.png'), edit_user_path(@user), :class => 'quick_link' %>
+<% end %>
+<p>
+	Name: <%= h @user.name %>
+</p>
+
+<p>
+  Login: <%= h @user.login %>
+</p>
+
+<p>
+	Email: <%= h @user.email %>
+</p>
+
+<p>
+	Created: <%= @user.created_at %>
+</p>
+
+<p>Roles: <%= @user.roles.collect do |r| link_to(r.name, r) end.join(', ') %></p>

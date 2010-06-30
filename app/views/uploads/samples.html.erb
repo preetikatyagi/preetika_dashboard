@@ -1,0 +1,61 @@
+<h1><%= @title = "Samples From Upload ##{@upload.id}" %></h1>
+<%= link_to image_tag('icons/add.png'), new_drug_path, :class => 'quick_link' %>
+
+
+<p>
+  <b>Upload:</b>
+  <%= link_to h(@upload.id), @upload %>
+</p>
+
+<%= will_paginate @samples %>
+<p>Only shown are samples linked to genes known by the system.</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Chromosome</th>
+			<th>Gene</th>
+			<th>Zygosity</th>
+			<th>Sample Type</th>
+			<th>Location</th>
+			<th>DB SNP</th>
+			<th>Reference Allele</th>
+			<th>SNP Code</th>
+			<th>Stand Add?</th>
+			<th>Depth</th>
+			<th>Transcript ID</th>
+			<th>Start Codon Loc.</th>
+			<th>Dist. To Exon</th>
+		</tr>
+	</thead>
+<tbody>
+	<%= render :partial => 'samples/row', :collection => @samples %>
+</tbody>
+
+</table>
+<%= will_paginate @samples %>
+
+
+<!-- t.integer  "upload_id",                     :null => false
+t.integer  "chromosome_id",                 :null => false
+t.integer  "gene_id"
+t.integer  "zygosity_id",                   :null => false
+t.integer  "sample_type_id",                :null => false
+t.integer  "loc",                           :null => false
+t.string   "gene_name",       :limit => 20
+t.string   "db_snp"
+t.string   "ref_allele",      :limit => 1,  :null => false
+t.string   "snp_code",        :limit => 4,  :null => false
+t.boolean  "strand_add"
+t.integer  "depth",                         :null => false
+t.string   "transcript_id",   :limit => 20, :null => false
+t.string   "ensembl_id",      :limit => 20
+t.integer  "start_codon_loc"
+t.integer  "dist_to_exon",                  :null => false
+t.string   "codon_seq",       :limit => 16
+t.string   "old_aa",          :limit => 1
+t.string   "new_seqs",        :limit => 4
+t.string   "new_aa",          :limit => 1
+t.string   "ns_or_ss",        :limit => 16
+t.datetime "created_at"
+t.datetime "updated_at" -->

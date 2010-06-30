@@ -1,0 +1,1 @@
+$email_host_name = 'localhost:3000'

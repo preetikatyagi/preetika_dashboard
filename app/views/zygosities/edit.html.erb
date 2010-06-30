@@ -1,0 +1,16 @@
+<h1>Editing zygosity</h1>
+
+<% form_for(@zygosity) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :import_code %><br />
+    <%= f.text_field :import_code %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @zygosity %> |
+<%= link_to 'Back', zygosities_path %>

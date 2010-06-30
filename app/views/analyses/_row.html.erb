@@ -1,0 +1,12 @@
+<tr class="<%= cycle('light', 'dark', :name => 'analysis_row') %>">
+	<td><%= link_to h(row.id), row %></td>
+	<td><%= link_to h(row.import.name), row %></td>
+  <td><%= link_to h(row.analyst.name), row.analyst %></td>
+	<td><%= link_to h(row.suggestions.count), row %></td>
+  <td><%= row.updated_at %></td>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_analysis_path(row) %>
+		<%= link_to image_tag('icons/keyboard.png'), :controller => 'analyses', :id => row.id, :action => 'generate_suggestions' %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+</tr>

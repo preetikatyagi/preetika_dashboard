@@ -1,0 +1,19 @@
+<h1><%= @title = "All Treatments" %></h1>
+<%= link_to image_tag('icons/add.png'), new_treatment_path, :class => 'quick_link' %>
+
+<table>
+
+<thead>
+	<tr>
+		<th>Sensitivity Concept</th>
+		<th>Drug</th>
+		<th>Weight</th>
+		<th>URL</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'row', :collection => @treatments %>
+</tbody>
+
+</table>

@@ -1,0 +1,25 @@
+<h1><%= @title = "Import ##{@upload.import.id} - #{h(@upload.data_file_name)}" %></h1>
+<%= link_to image_tag('icons/pencil.png'), edit_upload_path(@upload), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), uploads_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @upload, :confirm => 'Are you really, really sure?', :method => :delete %>
+
+<p>
+  <b>Import Package ID:</b>
+  <%= link_to h(@upload.import.id), @upload.import %>
+</p>
+
+<p>
+  <b>File:</b>
+  <%= link_to image_tag(@upload.data.url), h(@upload.data_file_name) %>
+</p>
+
+<p>
+  <b>Content Type:</b>
+  <%= h @upload.data_content_type %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%= h(number_to_human_size(@upload.data_file_size)) %>
+</p>
+

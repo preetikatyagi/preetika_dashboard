@@ -1,0 +1,10 @@
+<h1><%= @title = 'Add Gene' %></h1>
+
+<% form_for(@gene) do |f| %>
+  <%= f.error_messages %>
+
+ 	<%= render :partial => 'fields', :locals => {:f => f} %>
+ <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

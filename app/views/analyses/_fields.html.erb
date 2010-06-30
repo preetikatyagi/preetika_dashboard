@@ -1,0 +1,12 @@
+<p>
+<% imports = Import.find(:all).collect {|i| [ "#{i.patient.login} by #{i.importer.login}, #{i.updated_at}", i.id ] }%>
+  <%= f.label :import_id %><br />
+  <%= f.select("import_id", imports , { :include_blank => false, :selected => (@defaults ? @defaults[:import_id].to_i : @analysis.import_id) })
+ %>
+</p>
+
+<p>
+  <%= f.label :analyst_id %><br />
+  <%= f.select("analyst_id", User.find(:all).collect {|u| [ u.login, u.id ] }, { :include_blank => false, :selected => (@analysis.analyst_id ? @analysis.analyst_id : current_user.id) })
+ %>
+</p>

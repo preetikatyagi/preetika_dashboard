@@ -1,0 +1,12 @@
+<h1><%= @title = "Add Drug Treatment Suggestion" %></h1>
+<%= link_to image_tag('icons/application_view_list.png'), suggestions_path, :class => 'quick_link' %>
+
+<% form_for(@suggestion) do |f| %>
+  <%= f.error_messages %>
+
+	<%= render :partial => 'fields', :locals => {:f => f} %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

@@ -1,0 +1,13 @@
+<tr class="<%= cycle('light', 'dark', :name => 'treatment_rows') %>">
+<% unless defined?(hide_parent) %>
+	<td><%= link_to h(row.parent.name), row.parent %></td>
+<% end %>
+<% unless defined?(hide_child) %>
+	<td><%= link_to h(row.child.name), row.child %></td>
+<% end %>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_subconcept_path(row) %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+</tr>
+

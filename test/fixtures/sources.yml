@@ -1,0 +1,9 @@
+tgen:
+  name: TGen
+  description: The Translational Genomics Research Institute (TGen) is a non-profit 501(c)(3) organization focused on developing earlier diagnostics and smarter treatments.
+  url: http://tgen.org
+
+fda:
+  name: FDA
+  description: The U.S. Food and Drug Administration.
+  url: http://fda.gov

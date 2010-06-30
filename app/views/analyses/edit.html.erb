@@ -1,0 +1,14 @@
+<h1>Editing analysis</h1>
+
+<% form_for(@analysis) do |f| %>
+  <%= f.error_messages %>
+
+	<%= render :partial => 'fields', :locals => {:f => f} %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @analysis %> |
+<%= link_to 'Back', analyses_path %>

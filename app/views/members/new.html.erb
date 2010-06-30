@@ -1,0 +1,11 @@
+<h1><%= @title = "Add Sensitivity Concept Gene Member" %></h1>
+
+<% form_for(@member) do |f| %>
+  <%= f.error_messages %>
+	<%= render :partial => 'fields', :locals => {:f => f} %>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', members_path %>

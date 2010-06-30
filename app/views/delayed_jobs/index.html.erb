@@ -1,0 +1,32 @@
+<h1><%= @title = "Delayed Job Queue" %></h1>
+<%= link_to image_tag('icons/add.png'), new_delayed_job_path, :class => 'quick_link' %>
+
+<table>
+	<thead>
+		  <tr>
+	    <th>Priority</th>
+	    <th>Attempts</th>
+	    <th>Handler</th>
+	    <th>Last error</th>
+	    <th>Run at</th>
+	    <th>Locked at</th>
+	    <th>Actions</th>
+	  </tr>
+	</thead>
+<tbody>	
+	<% @delayed_jobs.each do |delayed_job| %>
+	  <tr>
+	    <td><%=h delayed_job.priority %></td>
+	    <td><%=h delayed_job.attempts %></td>
+	    <td><%=h delayed_job.handler %></td>
+	    <td><%=h delayed_job.last_error %></td>
+	    <td><%=h delayed_job.run_at %></td>
+	    <td><%=h delayed_job.locked_at %></td>
+	    <td><%= link_to image_tag('icons/eye.png'), delayed_job %>
+	    <%= link_to image_tag('icons/pencil.png'), edit_delayed_job_path(delayed_job) %>
+	    <%= link_to image_tag('icons/bin_closed.png'), delayed_job, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+</tbody>
+
+</table>

@@ -1,0 +1,161 @@
+<div class="concept">
+	
+<h1><%= @title = "#{h @concept.name} (Sensitivity Concept)" %>
+<%= link_to image_tag('icons/pencil.png'), edit_concept_path(@concept), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), concepts_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @concept, :confirm => 'Are you really, really sure?', :method => :delete %>
+</h1>
+<div class="detail_block concept_tree">
+<h2>Concept Tree</h2>
+<%= render_concept_tree(@concept)%>
+<div id="concept_visualization" class="visualization">
+</div>
+<script type="text/javascript">
+init_concept_visualization("<%= concept_path(@concept, :format => :json) %>");
+</script>
+</div>
+
+
+<div class="detail_block">
+<h2>Properties</h2>
+<p>
+  <b>Name:</b>
+  <%= h @concept.name %>
+</p>		
+<p>
+  <b>PubMed ID:</b>
+  <% if @concept.pubmed_id.nil? %>
+
+	<% else %>
+<a href="http://www.ncbi.nlm.nih.gov/pubmed/<%= h @concept.pubmed_id %>"><%= h @concept.pubmed_id %></a>
+	<% end %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @concept.description %>
+</p>
+<p>
+  <b>Notes:</b>
+  <%= @concept.notes %>
+</p>
+
+<p>
+  <b>Orientation:</b>
+  <%= link_to h(@concept.orientation.name), @concept.orientation %>
+</p>
+
+<p>
+  <b>Aberration:</b>
+  <%= link_to h(@concept.aberration.name), @concept.aberration %>
+</p>
+
+<p>
+  <b>Phenotype:</b>
+  <%= link_to h(@concept.phenotype.name), @concept.phenotype %>
+</p>
+
+<p>
+  <b>Data Source:</b>
+	<% if !@concept.source.nil? %>
+  		<%= link_to h(@concept.source.name), @concept.source %>
+	<% end %>
+</p>
+</div>
+
+
+
+<div class="detail_block">
+<h2>Drug Treatments</h2>
+<%= link_to image_tag('icons/add.png'), new_treatment_path(:defaults => {:concept_id => @concept.id}), :class => 'quick_link' %>
+<% if @concept.treatments.count > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Drugs</th>
+		<th>Weight</th>
+		<th>URL</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'treatments/row', :collection => @concept.treatments.sort{|a,b| a.weight <=> b.weight}, :locals => {:hide_concept => true} %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %>
+</div>
+
+<div class="detail_block">
+<h2>Member Genes</h2>
+<%= link_to image_tag('icons/add.png'), new_member_path(:defaults => {:concept_id => @concept.id}), :class => 'quick_link' %>
+<% if @concept.members.count > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Gene</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'members/row', :collection => @concept.members.sort{|a,b| a.gene.hugo_id <=> b.gene.hugo_id}, :locals => {:hide_concept => true} %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %>
+</div>
+
+<div class="detail_block">
+<h2>Subconcepts</h2>
+<%= link_to image_tag('icons/add.png'), new_subconcept_path(:defaults => {:parent_id => @concept.id}), :class => 'quick_link' %>
+<% if @concept.child_subconcepts.count > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Members</th>
+		<th>Treatments</th>
+		<th>Parent Concepts</th>
+		<th>Child Concepts</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<% children = @concept.child_subconcepts.collect {|i| i.child}.sort{|a,b| a.name <=> b.name} %>
+	<%= render :partial => 'concepts/row', :collection => children, :locals => {:hide_concept => true} %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %>
+</div>
+
+<div class="detail_block">
+<h2>Parent Concepts</h2>
+<%= link_to image_tag('icons/add.png'), new_subconcept_path(:defaults => {:child_id => @concept.id}), :class => 'quick_link' %>
+<% if @concept.parent_subconcepts.count > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Members</th>
+		<th>Treatments</th>
+		<th>Higher-Level Concepts</th>
+		<th>Subconcepts</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+
+	<% parents = @concept.parent_subconcepts.collect {|i| i.parent}.sort{|a,b| a.name <=> b.name} %>
+	<%= render :partial => 'concepts/row', :collection => parents, :locals => {:hide_concept => true} %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %></div>
+
+</div>
+
+<br class="clear"/>

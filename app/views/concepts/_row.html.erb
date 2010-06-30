@@ -1,0 +1,11 @@
+<tr class="<%= cycle('light', 'dark', :name => 'concept_row') %>">
+  <td><%= link_to h(row.name), row %></td>
+  <td><%= row.members.count %></td>
+  <td><%= row.treatments.count %></td>
+  <td><%= row.parent_subconcepts.collect {|i| link_to(h(i.parent.name), i.parent)} %></td>
+  <td><%= row.child_subconcepts.collect {|i| link_to(h(i.child.name), i.child)}  %></td>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_concept_path(row) %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+</tr>

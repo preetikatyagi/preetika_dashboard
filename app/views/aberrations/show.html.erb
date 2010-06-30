@@ -1,0 +1,31 @@
+<h1><%= @title = "#{h(@aberration.name)} (Aberration)" %></h1>
+<%= link_to image_tag('icons/pencil.png'), edit_aberration_path(@aberration), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), aberrations_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @aberration, :confirm => 'Are you really, really sure?', :method => :delete %>
+
+<p>
+  <b>Name:</b>
+  <%= h @aberration.name %>
+</p>
+
+
+<h2>Sensitivity Concepts</h2>
+<% if @aberration.concepts.size > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Genes</th>
+		<th>Treatments</th>
+		<th>Parent Concepts</th>
+		<th>Child Concepts</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'concepts/row', :collection => @aberration.concepts %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %>

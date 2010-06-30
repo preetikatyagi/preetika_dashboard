@@ -1,0 +1,17 @@
+<h1><%= @title = "All Gene/Sensitivity Concept Associations" %></h1>
+<%= link_to image_tag('icons/add.png'), new_member_path, :class => 'quick_link' %>
+
+<table>
+
+<thead>
+	<tr>
+		<th>Sensitivity Concept</th>
+		<th>Gene</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'row', :collection => @members %>
+</tbody>
+
+</table>

@@ -1,0 +1,24 @@
+<h1><%= @title = "#{h(@treatment.drug.name)} For #{h(@treatment.concept.name)} (Treatment)" %></h1>
+<%= link_to image_tag('icons/pencil.png'), edit_treatment_path(@treatment), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), treatments_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @treatment, :confirm => 'Are you really, really sure?', :method => :delete %>
+
+<p>
+  <b>Drug:</b>
+  <%= link_to h(@treatment.drug.name), @treatment.drug %>
+</p>
+
+<p>
+  <b>Sensitivity Concept:</b>
+  <%= link_to h(@treatment.concept.name), @treatment.concept %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%=h @treatment.weight %>
+</p>
+
+<p>
+  <b>URL:</b>
+  <%=h @treatment.url %>
+</p>

@@ -1,0 +1,9 @@
+<h1><%= @title = "Edit Concept" %></h1>
+
+<% form_for(@concept) do |f| %>
+  <%= f.error_messages %>
+	<%= render :partial => 'fields', :locals => {:f => f} %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

@@ -1,0 +1,8 @@
+<% for n in 1..10 do %>
+concept_<%= n %>:
+  name: Sensitivity Concept <%= n %>
+  description: A fake concept for testing purposes only.
+  orientation: up
+  aberration: epigenetic
+  phenotype: resistence  
+<% end %>

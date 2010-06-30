@@ -1,0 +1,3 @@
+= Useful Commands
+
+ * cap invoke COMMAND='cd genealizer/current; RAILS_ENV=production rake data:import:drugbank

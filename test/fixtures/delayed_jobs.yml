@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  priority: 1
+  attempts: 1
+  handler: MyText
+  last_error: MyString
+  run_at: 2010-04-15 17:43:26
+
+two:
+  priority: 1
+  attempts: 1
+  handler: MyText
+  last_error: MyString
+  run_at: 2010-04-15 17:43:26

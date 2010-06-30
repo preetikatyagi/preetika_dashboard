@@ -1,0 +1,12 @@
+<h1>Editing chromosome</h1>
+
+<% form_for(@chromosome) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @chromosome %> |
+<%= link_to 'Back', chromosomes_path %>

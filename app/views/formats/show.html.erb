@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @format.name %>
+</p>
+
+<p>
+  <b>Mime type:</b>
+  <%=h @format.mime_type %>
+</p>
+
+<p>
+  <b>File suffix:</b>
+  <%=h @format.file_suffix %>
+</p>
+
+
+<%= link_to 'Edit', edit_format_path(@format) %> |
+<%= link_to 'Back', formats_path %>

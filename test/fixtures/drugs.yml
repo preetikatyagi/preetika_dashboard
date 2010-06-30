@@ -1,0 +1,7 @@
+<% for n in 1..101 do %>
+drug_<%= n %>:
+  source: <%= n % 2 == 0 ? 'tgen' : 'fda' %>
+  name: Drug <%= n %>
+  description: A fake drug record for testing purposes.
+  url:  http://drug_<%= n %>.example.com
+<% end %>

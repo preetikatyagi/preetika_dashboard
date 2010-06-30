@@ -1,0 +1,22 @@
+<h1><%= @title = "Patient Import Packages" %></h1>
+
+<p class='instructions'>An import package is a group of files uploaded by a sequencing expert, intended to be analyzed by someone else at a later date. You can attach as many files to an import package as you'd like, and even create multiple packages per patient.</p>
+
+<%= link_to image_tag('icons/add.png'), new_import_path, :class => 'quick_link' %>
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Sequencer</th>
+			<th>Patient</th>
+			<th>Analyses</th>
+			<th>File Uploads</th>
+			<th>Created</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'row', :collection => @imports %>
+	</tbody>
+</table>

@@ -1,0 +1,11 @@
+<%= render :partial => 'layouts/header' %>
+<% render :partial => 'layouts/breadcrumb' %>
+
+<div class="wrapper col3">
+    <div id="container">
+        <!--%= render :partial => 'layouts/sidebar' %-->
+        <%= yield %>
+    </div>
+</div>
+
+<%= render :partial => 'layouts/footer' %>

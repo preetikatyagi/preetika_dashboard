@@ -1,0 +1,21 @@
+<p>
+  <%= f.label :weight %>
+  <%= f.text_field :weight %>
+</p>
+
+<p>
+  <%= f.label :url, 'URL' %>
+  <%= f.text_field :url %>
+</p>
+
+<p>
+	<% concepts = Concept.find(:all, :order => 'name ASC').collect {|i| [ h(i.name), i.id ] } %>
+	<%= f.label :concept_id %>
+	<%= f.select("concept_id", concepts, { :include_blank => false, :selected => (@defaults ? @defaults[:concept_id].to_i : @treatment.concept_id) }) %>
+</p>
+
+<p>
+	<% drugs = Drug.find(:all, :order => 'name ASC', :include => [:source]).collect {|i| [ h("#{i.name} (#{i.source.name})"), i.id ] } %>
+	<%= f.label :drug_id %>
+	<%= f.select("drug_id", drugs, { :include_blank => false, :selected => (@defaults ? @defaults[:drug_id].to_i : @treatment.drug_id) }) %>
+</p>

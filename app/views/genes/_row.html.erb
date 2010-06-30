@@ -1,0 +1,13 @@
+<tr class="<%= cycle('light', 'dark', :name => 'gene_row') %>">
+	<td><%= link_to h(row.hugo_id), row %></td>
+  <td><%= link_to h(row.ensembl_id), row %></td>
+  <td><%= link_to h(row.entrez_id), row %></td>
+<% unless defined?(hide_members) %>
+  <td><%= row.members.count %></td>
+<% end %>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_gene_path(row) %>
+		<%= link_to image_tag('icons/keyboard.png'), :controller => 'genes', :id => row.id, :action => 'attempt_id_conversions' %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+</tr>

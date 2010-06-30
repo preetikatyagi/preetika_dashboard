@@ -1,0 +1,9 @@
+<div id="results_meta" class="result_type_container">
+	<!-- <p>Phrase: <%= h @phrase %></p> -->
+	<h1>Overview</h1>
+	<p><%= @total %> results.
+		<% if @total >= @limit %>
+		(Limited to <%= @limit %> of each data type.)
+		<% end %>
+		</p>
+</div>

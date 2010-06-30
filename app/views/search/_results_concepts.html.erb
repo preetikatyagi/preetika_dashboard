@@ -1,0 +1,25 @@
+<div id="results_concepts" class="result_type_container">
+	<h1>Sensitivity Concepts</h1>
+	<% if @concepts.size > 0 %>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Genes</th>
+				<th>Treatments</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @concepts.each do |d| %>
+			<tr class="<%= cycle 'light', 'dark', :name => 'result_source_row' %>">
+				<td><%= link_to h(d.name), d %></td>
+				<td><%= d.members.count %></td>
+				<td><%= d.treatments.count %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<em>(none)</em>
+<% end %>
+</div>

@@ -1,0 +1,12 @@
+administrator:
+  code: administrator
+  name: Administrator
+patient:
+  code: patient
+  name: Patient
+analyst:
+  code: analyst
+  name: Analyst
+sequencer:
+  code: sequencer
+  name: Sequencer

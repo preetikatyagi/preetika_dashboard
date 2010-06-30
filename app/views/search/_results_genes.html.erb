@@ -1,0 +1,22 @@
+<div id="results_genes" class="result_type_container">
+	<h1>Genes</h1>
+	<% if @genes.size > 0 %>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Sensitivity Concepts</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @genes.each do |d| %>
+			<tr class="<%= cycle 'light', 'dark', :name => 'result_gene_row' %>">
+				<td><%= link_to h(d.hugo_id), d %></td>
+				<td><%= d.members.count %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<em>(none)</em>
+<% end %></div>

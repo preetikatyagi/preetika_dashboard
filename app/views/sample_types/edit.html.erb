@@ -1,0 +1,16 @@
+<h1>Editing sample_type</h1>
+
+<% form_for(@sample_type) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :import_code %><br />
+    <%= f.text_field :import_code %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @sample_type %> |
+<%= link_to 'Back', sample_types_path %>

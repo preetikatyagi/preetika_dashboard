@@ -1,0 +1,13 @@
+<h1>Editing Role</h1>
+<%= link_to image_tag('icons/eye.png'), @role, :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), roles_path, :class => 'quick_link' %>
+
+<% form_for(@role) do |f| %>
+  <%= f.error_messages %>
+
+	<%= render :partial => 'fields', :locals => {:f => f} %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

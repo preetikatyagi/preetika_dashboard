@@ -1,0 +1,8 @@
+<tr class="<%= cycle('light', 'dark', :name => 'role_row') %>">
+	<td><%= link_to h(row.analysis.name), row.analysis %></td>
+  <td><%= link_to h(row.treatment.name), row.treatment %></td>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_suggestion_path(row) %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+</tr>

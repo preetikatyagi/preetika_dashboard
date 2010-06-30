@@ -1,0 +1,11 @@
+mutation:
+  name: Mutation
+
+epigenetic:
+  name: Epigenetic
+
+expression:
+  name: Expression
+
+inhibition:
+  name: Inhibition

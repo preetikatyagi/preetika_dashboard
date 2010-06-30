@@ -1,0 +1,15 @@
+<html>  
+  <head>  
+		
+    <%= stylesheet_link_tag 'reset' %>
+    <%= stylesheet_link_tag 'mindmap' %>
+
+    <%= javascript_include_tag :defaults, 'jit.js', 'mindmap_samples.js', 'mindmap.js' %>
+
+  </head>  
+  
+  <body onload="init_mindmap();">  
+		<%= yield %>
+  </body>  
+
+</html>

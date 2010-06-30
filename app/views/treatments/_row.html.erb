@@ -1,0 +1,14 @@
+<tr class="<%= cycle('light', 'dark', :name => 'treatment_rows') %>">
+<% unless defined?(hide_concept) %>
+  <td><%= link_to h(row.concept.name), row.concept %></td>
+<% end %>
+<% unless defined?(hide_drug) %>
+  <td><%= link_to h("#{row.drug.name} (#{row.drug.source.name})"), row.drug %></td>
+<% end %>
+  <td><%= link_to row.weight, row %></a></td>
+  <td><a href="<%= row.url %>"><%= row.url %></a></td>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_treatment_path(row) %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+</tr>

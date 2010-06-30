@@ -1,0 +1,9 @@
+text:
+  name: Plain Text
+  mime_type: text/plain
+  file_suffix: txt
+
+vcf:
+  name: Verbose Coverage File
+  mime_type: text/plain
+  file_suffix: vcf

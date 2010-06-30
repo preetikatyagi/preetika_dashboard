@@ -1,0 +1,92 @@
+<h1><%= @title = "Analysis #{@analysis.name}" %></h1>
+
+
+
+<p>
+  <b>Patient:</b>
+  <%= link_to h(@analysis.import.patient.name), @analysis.import.patient %>
+</p>
+
+
+<p>
+  <b>Importer:</b>
+  <%= link_to h(@analysis.import.importer.name), @analysis.import.importer %>
+</p>
+
+<p>
+  <b>Analyst:</b>
+  <%= link_to h(@analysis.analyst.name), @analysis.analyst %>
+</p>
+
+<div class="detail_block">
+<h2>Uploads</h2>
+<%= link_to image_tag('icons/add.png'), new_upload_path(:defaults => {:import_id => @analysis.import.id}), :class => 'quick_link' %>
+<% if @analysis.import.uploads.count > 0 %>
+<table>
+	<thead>
+		<tr>
+			<th>Upload</th>
+			<th>Samples</th>
+			<th>Linked To Gene Database</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @analysis.import.uploads.each do |u| %>
+		<tr>
+			<td>
+				<%= link_to image_tag(u.data.url), h(u.data_file_name) %>
+				<%= link_to image_tag('icons/bin_closed.png'), u, :confirm => 'Are you sure you want to delete this file upload?', :method => :delete %>								</td>
+			<td><%= u.samples.count %></td>
+			<td>
+				<%
+				count = Sample.count(:conditions => ['upload_id = ? AND gene_id IS NOT NULL', u.id])
+				percent = 0
+				if u.samples.count > 0
+					percent = count * 100 / u.samples.count.to_f
+				end
+				%>
+				<%= link_to h(count), :controller => :uploads, :id => u.id, :action => :samples %>
+				(<%= sprintf("%.3f", percent) %>%)
+				<%= link_to image_tag('icons/keyboard_add.png'), :controller => 'uploads', :id => u.id, :action => 'link_samples_to_genes', :analysis_id => @analysis.id %>
+				<%= link_to image_tag('icons/keyboard_delete.png'), :controller => 'uploads', :id => u.id, :action => 'unlink_samples_to_genes', :analysis_id => @analysis.id %>
+
+				</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<% else %>
+(none)
+<% end %>
+</div>
+
+<div class="detail_block">
+<h2>Suggested Drug Treatments</h2>
+<%= link_to image_tag('icons/keyboard_add.png'), :controller => 'analyses', :id => @analysis.id, :action => 'generate_suggestions' %>
+<%= link_to image_tag('icons/keyboard_delete.png'), :controller => 'analyses', :id => @analysis.id, :action => 'destroy_suggestions' %>
+<%= link_to image_tag('icons/add.png'), new_suggestion_path(:defaults => {:analysis_id => @analysis.id}), :class => 'quick_link' %>
+<p>In order for the system to automatically generate drug treatment suggestions, uploaded samples you want to be considered must have been "Linked To Gene Database", which must be manually requested due to the time-consuming nature of the task. If you do not want an upload sample set considered, simply delete the gene links using the button provided. </p>
+<% if @analysis.suggestions.count > 0 %>
+<table>
+	<thead>
+		<tr>
+			<th>Drug</th>
+			<th>Sensitivity Concept</th>
+			<th>Added</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @analysis.suggestions.each do |s| %>
+		<tr>
+			<td><%= link_to h(s.treatment.drug.name), s.treatment.drug %></td>
+			<td><%= link_to h(s.treatment.concept.name), s.treatment.concept %></td>
+			<td><%= s.updated_at %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<% else %>
+<p>(No suggestions have been created for this analysis.)</p>
+<% end %>
+</div>
+

@@ -1,0 +1,40 @@
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :pubmed_id %>
+  <%= f.text_field :pubmed_id %>
+</p>
+<p>
+  <%= f.label :description %>
+  <%= f.text_area :description, :rows => 4 %>
+</p>
+<p>
+  <%= f.label :notes %>
+  <%= f.text_area :notes, :rows => 4 %>
+</p>
+
+<p>
+  <% all = Orientation.find(:all).collect {|i| [ h(i.name), i.id ] } %>
+  <%= f.label :orientation_id %>
+  <%= f.select("orientation_id", all, { :include_blank => false, :selected => (@defaults ? @defaults[:orientation_id].to_i : nil) }) %>
+</p>
+
+<p>
+  <% all = Aberration.find(:all).collect {|i| [ h(i.name), i.id ] } %>
+  <%= f.label :aberration_id %>
+  <%= f.select("aberration_id", all, { :include_blank => false, :selected => (@defaults ? @defaults[:aberration_id].to_i : nil) }) %>
+</p>
+
+<p>
+  <% all = Phenotype.find(:all).collect {|i| [ h(i.name), i.id ] } %>
+  <%= f.label :phenotype_id %>
+  <%= f.select("phenotype_id", all, { :include_blank => false, :selected => (@defaults ? @defaults[:phenotype_id].to_i : nil) }) %>
+</p>
+
+<p>
+  <% all = Source.find(:all).collect {|i| [ h(i.name), i.id ] } %>
+  <%= f.label :source_id %>
+  <%= f.select("source_id", all, { :include_blank => false, :selected => (@defaults ? @defaults[:source_id].to_i : nil) }) %>
+</p>

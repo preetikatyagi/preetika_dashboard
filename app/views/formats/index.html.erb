@@ -1,0 +1,24 @@
+<h1>Listing formats</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Mime type</th>
+    <th>File suffix</th>
+  </tr>
+
+<% @formats.each do |format| %>
+  <tr>
+    <td><%=h format.name %></td>
+    <td><%=h format.mime_type %></td>
+    <td><%=h format.file_suffix %></td>
+    <td><%= link_to 'Show', format %></td>
+    <td><%= link_to 'Edit', edit_format_path(format) %></td>
+    <td><%= link_to 'Destroy', format, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New format', new_format_path %>

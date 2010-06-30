@@ -1,0 +1,11 @@
+<tr class="<%= cycle('light', 'dark', :name => 'user_row') %>">
+	<td><%= link_to h(row.name), row %></td>
+  <td><%= link_to h(row.login), row %></td>
+  <td><%= link_to h(row.email), row %></td>
+  <td><%= row.roles.collect do |r| link_to(h(r.name), r) end.join(', ') %></td>
+  <td><%= link_to h(row.activated_at), row %></td>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_user_path(row) %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+</tr>

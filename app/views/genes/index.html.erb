@@ -1,0 +1,20 @@
+<h1><%= @title = 'All Genes' %></h1>
+<%= link_to image_tag('icons/add.png'), new_gene_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/keyboard.png'), :controller => 'genes', :action => 'attempt_id_conversions' %>
+
+<table>
+
+<thead>
+	<tr>
+		<th>Hugo ID</th>
+		<th>Ensembl ID</th>
+		<th>Entrez ID</th>
+		<th>Sensitivity Concept Refenences</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'row', :collection => @genes %>
+</tbody>
+
+</table>

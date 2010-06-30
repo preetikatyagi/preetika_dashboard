@@ -1,0 +1,31 @@
+<h1><%= @title = "#{h(@phenotype.name)} (Phenotype)" %></h1>
+<%= link_to image_tag('icons/pencil.png'), edit_phenotype_path(@phenotype), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), phenotypes_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @phenotype, :confirm => 'Are you really, really sure?', :method => :delete %>
+
+<p>
+  <b>Name:</b>
+  <%= h @phenotype.name %>
+</p>
+
+
+<h2>Sensitivity Concepts</h2>
+<% if @phenotype.concepts.size > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Genes</th>
+		<th>Treatments</th>
+		<th>Parent Concepts</th>
+		<th>Child Concepts</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'concepts/row', :collection => @phenotype.concepts %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %>

@@ -1,0 +1,12 @@
+
+<p>
+	<% concepts = Concept.find(:all, :order => 'name ASC').collect {|i| [ h(i.name), i.id ] } %>
+	<%= f.label :concept_id %>
+	<%= f.select("concept_id", concepts, { :include_blank => false, :selected => (@defaults ? @defaults[:concept_id].to_i : @member.concept_id) }) %>
+</p>
+
+<p>
+	<% genes = Gene.find(:all, :order => 'name ASC').collect {|i| [ h(i.name), i.id ] } %>
+	<%= f.label :gene_id %>
+	<%= f.select("gene_id", genes, { :include_blank => false, :selected => (@defaults ? @defaults[:gene_id].to_i : @member.gene_id) }) %>
+</p>

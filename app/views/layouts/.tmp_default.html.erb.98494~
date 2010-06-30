@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <title>Genealizer <%= " :: #{h(@title)}" if @title %></title>
+        <%= stylesheet_link_tag 'reset', 'default' %>
+        <%= javascript_include_tag :defaults %>
+    </head>
+    <body>
+        <div id="everything">
+            <div id="title">
+                <%= link_to 'Genealizer', '/' %>
+            </div>
+            <div id="content_top">
+                <% if logged_in? %>
+                Welcome <%= current_user.login %>. <%= link_to 'logout', session_path, :method => 'delete' %>
+                <% else %>
+                <%= link_to 'Login', new_session_path %>
+                <%= link_to 'Sign Up', new_user_path %>
+                <% end %>
+            </div>
+            <div id="content_middle">
+                <ul id="navigation">
+                    <li>
+                        <%= link_to "Analyses", imports_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Treatments", treatments_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Imports", imports_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Drugs", drugs_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Sources", sources_path %>
+                    </li>
+                </ul>
+                <div id="page">
+                    <div id="flash">
+                        <% flash.each do |key, value| -%>
+                        <div id="flash_<%= key %>">
+                            <%=h value %>
+                        </div>
+                        <% end -%>
+                    </div>
+                    <%= yield %>
+                </div>
+                <div id="footer">
+                    <p>
+                        Genealizer (C) <%= Time.now.year %><a href="http://www.tgen.org"> Translational Genomics Research Institute</a>. All rights reserved.
+                    </p>
+                </div>
+            </div>
+            <div id="content_bottom">
+                &nbsp;
+            </div>
+        </div>
+        <!--script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+        try {
+        var pageTracker = _gat._getTracker("UA-1395497-5");
+        pageTracker._trackPageview();
+        } catch(err) {}</script-->
+    </body>
+</html>

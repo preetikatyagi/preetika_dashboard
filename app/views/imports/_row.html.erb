@@ -1,0 +1,12 @@
+<tr class="<%= cycle('light', 'dark', :name => 'import_rows') %>">
+	<td><%= link_to h(row.id), row %></td>
+  <td><%= link_to h(row.importer.name), row.importer %></td>
+  <td><%= link_to h(row.patient.name), row.patient %></td>
+  <td><%= link_to h(row.analyses.count), row %></td>
+  <td><%= link_to h(row.uploads.count), row %></td>
+  <td><%= h row.created_at %></td>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_import_path(row) %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

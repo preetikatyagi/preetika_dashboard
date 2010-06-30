@@ -1,0 +1,13 @@
+<h1><%= @title = "Edit Aberration" %></h1>
+<%= link_to image_tag('icons/eye.png'), @aberration, :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), aberrations_path, :class => 'quick_link' %>
+
+
+<% form_for(@aberration) do |f| %>
+  <%= f.error_messages %>
+	<%= render :partial => 'fields', :locals => {:f => f} %>
+
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+

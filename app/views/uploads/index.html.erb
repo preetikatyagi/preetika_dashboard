@@ -1,0 +1,21 @@
+<h1><%= @title = "All File Uploads" %></h1>
+<%= link_to image_tag('icons/add.png'), new_upload_path, :class => 'quick_link' %>
+
+<p class='warning'>Warning: These records are required for the system to operate properly. Before making <em>any</em> changes to these, make absolutely sure you know what you're doing!</p>
+
+<table>
+
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Content Type</th>
+		<th>Size</th>
+		<th>Samples</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'row', :collection => @uploads %>
+</tbody>
+
+</table>

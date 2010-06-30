@@ -1,0 +1,91 @@
+<h1><%= @title = "#{h @drug.name} (Drug)" %></h1>
+<%= link_to image_tag('icons/pencil.png'), edit_drug_path(@drug), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), drugs_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), drug_path(@drug), :method => 'delete', :class => 'quick_link', :confirm => 'Are you really, really sure?' %>
+
+<% props = [
+['Name', h(@drug.name)],
+['Data Source', link_to(h(@drug.source.name), @drug.source)         ],
+['URL', "<a href='#{@drug.url}'>#{@drug.url}</a>"          ],
+['Description', @drug.description         ]	,
+['Drug Type', @drug.drug_type           ],
+["ID From Data Source (#{@drug.source.name})", @drug.external_id         ],
+["ATC Codes", @drug.atc_codes],
+['Brand Names', @drug.brand_names         ],
+['Generic Names', @drug.generic_names       ],
+['Chemical Formula', @drug.chemical_formula    ],
+['Absorption', @drug.absorption          ],
+['Drug Interactions', @drug.drug_interactions   ],
+['KEGG Drug ID', @drug.kegg_drug_id.nil? ? nil : "<a href='http://www.genome.jp/dbget-bin/www_bget?dr:#{@drug.kegg_drug_id}'>#{@drug.kegg_drug_id}</a>" ],
+
+['LIMS Drug ID', @drug.lims_drug_id        ],
+
+['PubChem Compound ID', @drug.pubchem_compound_id.nil? ? nil : "<a href='http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=#{@drug.pubchem_compound_id}'>#{@drug.pubchem_compound_id}</a>" ],
+
+['PubChem Substance ID', @drug.pubchem_substance_id.nil? ? nil : "<a href='http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?sid=#{@drug.pubchem_substance_id}'>#{@drug.pubchem_substance_id}</a>" ],
+
+['GenBank ID', @drug.genbank_id          ],
+['DPD Drug ID', @drug.dpd_drug_id         ],
+['Primary Accession Number', @drug.primary_accession_number],
+['Secondary Accession Number', @drug.secondary_accession_number],
+['Chemical IUPAC Name', @drug.chemical_iupac_name],
+['CAS Registry Number', @drug.cas_registry_number.nil? ? nil : "<a href=' http://www.chemblink.com/products/#{@drug.cas_registry_number}.htm'>#{@drug.cas_registry_number}</a>"],
+['KEGG Compound ID', @drug.kegg_compound_id.nil? ? nil : "<a href='http://www.genome.jp/dbget-bin/www_bget?#{@drug.kegg_compound_id}'>#{@drug.kegg_compound_id}</a>"], 
+['ChEBI ID', @drug.chebi_id.nil? ? nil : "<a href='http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:#{@drug.chebi_id}'>#{@drug.chebi_id}</a>"],
+['RXlist', @drug.rxlist_link.nil? ? nil : "<a href='#{@drug.rxlist_link}'>#{@drug.rxlist_link}</a>"],
+['PharmGKB ID', @drug.pharm_gkb_id.nil? ? nil : "<a href='http://www.pharmgkb.org/views/index.jsp?objId=#{@drug.pharm_gkb_id}'>#{@drug.pharm_gkb_id}</a>"],
+
+['PDRhealth', @drug.pdrhealth_link.nil? ? nil : "<a href='#{@drug.pdrhealth_link}'>#{@drug.pdrhealth_link}</a>"],
+['Wikipedia', @drug.wikipedia_link.nil? ? nil : "<a href='#{@drug.wikipedia_link}'>#{@drug.wikipedia_link}</a>"],
+['Drug Category', @drug.drug_category],
+['Pharmacology', @drug.pharmacology],
+['Mechanism of Action', @drug.mechanism_of_action],
+['Indication', @drug.indication]
+	]
+	
+%>
+	
+	
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% props.each do |i| %>
+		<tr class="<%= cycle('light', 'dark', :name => 'drug_property_rows') %>">
+			<td><%= i[0] %></td>
+			<td><%= i[1] %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p>
+  <b>Data Source:</b>
+  <%= link_to h(@drug.source.name), @drug.source %>
+</p>
+
+
+<h2>Sensitivity Concepts Treated By <%= h @drug.name %></h2>
+<%= link_to image_tag('icons/add.png'), new_treatment_path(:defaults => {:drug_id => @drug.id}), :class => 'quick_link' %>
+<% if @drug.treatments.count > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Sensitivity Concept</th>
+		<th>Weight</th>
+		<th>URL</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'treatments/row', :collection => @drug.treatments, :locals => {:hide_drug => true} %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %>

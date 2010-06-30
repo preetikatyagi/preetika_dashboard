@@ -1,0 +1,41 @@
+<h1><%= @title = "#{h(@role.name)} (Role)" %></h1>
+<%= link_to image_tag('icons/pencil.png'), edit_role_path(@role), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), roles_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @role, :confirm => 'Are you really, really sure?', :method => :delete %>
+
+<p>
+  <b>Name:</b>
+  <%=h @role.name %>
+</p>
+
+<p>
+  <b>Code: </b>
+  <%=h @role.code %>
+</p>
+
+<p>
+  <b>Users:</b>
+  <%= @role.users.count %>
+</p>
+
+<h2>Users Filling This Role</h2>
+<%= link_to image_tag('icons/add.png'), new_drug_path(:defaults => {:role_id => @role.id}), :class => 'quick_link' %>
+<% if @role.users.count > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Login</th>
+		<th>Email</th>
+		<th>Roles</th>
+		<th>Activated</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'users/row', :collection => @role.users %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %>

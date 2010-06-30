@@ -1,0 +1,11 @@
+<h1><%= @title = "Editing Treatment" %></h1>
+<%= link_to image_tag('icons/eye.png'), @treatment, :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), treatments_path, :class => 'quick_link' %>
+
+<% form_for(@treatment) do |f| %>
+  <%= f.error_messages %>
+	<%= render :partial => 'fields', :locals => {:f => f} %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

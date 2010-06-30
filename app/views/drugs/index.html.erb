@@ -1,0 +1,20 @@
+<h1><%= @title = 'All Known Drugs' %></h1>
+<%= link_to image_tag('icons/add.png'), new_drug_path, :class => 'quick_link' %>
+
+<%= will_paginate @drugs %>
+
+<table>
+
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Source</th>
+		<th>URL</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'row', :collection => @drugs %>
+</tbody>
+
+</table>

@@ -1,0 +1,18 @@
+<h1><%= @title = "All Data Sources" %></h1>
+<%= link_to image_tag('icons/add.png'), new_source_path, :class => 'quick_link' %>
+
+<table>
+
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Drugs</th>
+		<th>URL</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'row', :collection => @sources %>
+</tbody>
+
+</table>

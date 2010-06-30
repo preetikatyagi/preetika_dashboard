@@ -1,0 +1,24 @@
+<div id="results_drugs" class="result_type_container">
+	<h1>Drugs</h1>
+	<% if @drugs.size > 0 %>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Treatments</th>
+				<th>Source</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @drugs.each do |d| %>
+			<tr class="<%= cycle 'light', 'dark', :name => 'result_drug_row' %>">
+				<td><%= link_to h(d.name), d %></td>
+				<td><%= d.treatments.count %></td>
+				<td><%= link_to h(d.source.name), d.source %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<em>(none)</em>
+<% end %></div>

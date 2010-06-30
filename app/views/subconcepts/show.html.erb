@@ -1,0 +1,13 @@
+<p>
+  <b>Parent:</b>
+  <%=h @subconcept.parent_id %>
+</p>
+
+<p>
+  <b>Child:</b>
+  <%=h @subconcept.child_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_subconcept_path(@subconcept) %> |
+<%= link_to 'Back', subconcepts_path %>

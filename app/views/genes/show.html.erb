@@ -1,0 +1,36 @@
+<h1><%= @title = "#{h(@gene.hugo_id)} (Gene)" %></h1>
+<%= link_to image_tag('icons/pencil.png'), edit_gene_path(@gene), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), genes_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @gene, :confirm => 'Are you really, really sure?', :method => :delete %>
+
+<p>
+  <b>Hugo ID:</b>
+  <%=h @gene.hugo_id %>
+</p>
+<p>
+  <b>Ensembl ID:</b>
+  <%=h @gene.ensembl_id %>
+</p>
+<p>
+  <b>Entrez ID:</b>
+  <%=h @gene.entrez_id %>
+</p>
+
+
+<h2>Sensitivity Concepts Referencing <%= h @gene.hugo_id %></h2>
+<%= link_to image_tag('icons/add.png'), new_member_path(:defaults => {:gene_id => @gene.id}), :class => 'quick_link' %>
+<% if @gene.members.count > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Sensitivity Concept</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'members/row', :collection => @gene.members, :locals => {:hide_gene => true} %>
+</tbody>
+</table>
+<% else %>
+(none)
+<% end %>

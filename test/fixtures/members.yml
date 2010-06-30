@@ -1,0 +1,5 @@
+<% for n in 1..30 do %>
+member_<%= n %>:
+  gene: gene_<%= n + 1 %>
+  concept: concept_<%= (n % 10) + 1 %>
+<% end %>

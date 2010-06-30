@@ -1,0 +1,20 @@
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :external_id, 'External ID' %>
+    <%= f.text_field :external_id %>
+  </p>
+
+<p>
+  <% sources = Source.find(:all).collect {|i| [ h(i.name), i.id ] } %>
+  <%= f.label :source_id %>
+  <%= f.select("source_id", sources, { :include_blank => false, :selected => (@defaults ? @defaults[:source_id].to_i : nil) }) %>
+</p>
+
+<p>
+    <%= f.label :url, 'URL' %>
+    <%= f.text_field :url %>
+</p>

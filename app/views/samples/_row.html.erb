@@ -1,0 +1,19 @@
+<tr class="<%= cycle('light', 'dark', :name => 'sample_row') %>">
+	<td><%= link_to h(row.chromosome.number), row.chromosome %></td>
+	<td><%= link_to h(row.gene.hugo_id), row.gene %></td>
+	<td><%= link_to h(row.zygosity.import_code), row.zygosity %></td>
+  <td><%= h(row.location) %></td>
+  <td><%= h(row.db_snp) %></td>
+  <td><%= h(row.ref_allele) %></td>
+  <td><%= h(row.snp_code) %></td>
+  <td><%= h(row.strand_add) %></td>
+  <td><%= h(row.depth) %></td>
+  <td><%= h(row.transcript_id) %></td>
+  <td><%= h(row.start_codon_loc) %></td>
+  <td><%= h(row.dist_to_exon) %></td>
+  <td><%= row.updated_at %></td>
+  <td>
+		<%= link_to image_tag('icons/eye.png'), row %>
+		<%= link_to image_tag('icons/pencil.png'), edit_sample_path(row) %>
+		<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+</tr>

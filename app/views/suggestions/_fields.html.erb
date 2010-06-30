@@ -1,0 +1,13 @@
+
+<p>
+	<% analyses = Analysis.all.sort {|a,b| a.import.patient.name <=> b.import.patient.name }.collect {|a| [ "##{a.id}, import ##{a.import.id} by #{h(a.import.patient.name)}. (Patient: #{h(a.import.patient.name)})", a.id ]} %>
+	<%= f.label :analysis_id %>
+	<%= f.select("analysis_id", analyses, { :include_blank => false, :selected => (@defaults ? @defaults[:analysis_id].to_i : @suggestion.analysis_id) }) %>
+</p>
+
+
+<p>
+	<% treatments = Treatment.all.sort {|a,b| a.drug.name <=> b.drug.name }.collect {|s| [ "#{h(s.drug.name)} for #{h(s.concept.name)}", s.id ]} %>
+	<%= f.label :treatment_id %>
+	<%= f.select("treatment_id", treatments, { :include_blank => false, :selected => (@defaults ? @defaults[:treatment_id].to_i : @suggestion.treatment_id) }) %>
+</p>

@@ -1,0 +1,23 @@
+
+<div id="results_sources" class="result_type_container">
+	<h1>Data Sources</h1>
+	<% if @sources.size > 0 %>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Drugs</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @sources.each do |d| %>
+			<tr class="<%= cycle 'light', 'dark', :name => 'result_source_row' %>">
+				<td><%= link_to h(d.name), d %></td>
+				<td><%= d.drugs.count %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<em>(none)</em>
+<% end %></div>

@@ -1,0 +1,26 @@
+<h1>Editing Upload</h1>
+
+<% form_for(@upload) do |f| %>
+  <%= f.error_messages %>
+
+	<p>
+	  File Name:
+	  <%= @upload.data_file_name %>
+	</p>
+	<p>
+	  Size:
+	  <%= number_to_human_size(@upload.data_file_size) %>
+	</p>
+	<p>
+	  <%= f.label :data_content_type, 'Content' %>
+	  <%= f.text_field :data_content_type %>
+	</p>
+	
+	<p>
+	  <label>Reprocess</label>
+	  <input id="upload_reprocess" type="checkbox" value="" name="upload[reprocess]"/>
+	</p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

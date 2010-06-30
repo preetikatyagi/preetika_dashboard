@@ -1,0 +1,84 @@
+<h1><%= @title = "Import ##{@import.id}" %></h1>
+
+<%= link_to image_tag('icons/pencil.png'), edit_import_path(@import), :class => 'quick_link' %>
+<%= link_to image_tag('icons/application_view_list.png'), imports_path, :class => 'quick_link' %>
+<%= link_to image_tag('icons/bin_closed.png'), @import, :confirm => 'Are you really, really sure?', :method => :delete %>
+
+<p>
+  <b>Import ID</b>
+  <%= h @import.id %>
+</p>
+
+<p>
+  <b>Importer</b>
+  <%= link_to h(@import.importer.name), @import.importer %>
+</p>
+
+<p>
+  <b>Patient</b>
+  <%= link_to h(@import.patient.name), @import.patient %>
+</p>
+
+<div class="detail_block">
+<h2>File Uploads</h2>
+<%= link_to image_tag('icons/add.png'), new_upload_path(:defaults => {:import_id => @import.id}), :class => 'quick_link' %>
+This import has <%= @import.uploads.count %> associated file uploads.
+<% if @import.uploads.count > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>Name</th>
+		<th>Content Type</th>
+		<th>Size</th>
+		<th>Samples</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<%= render :partial => 'uploads/row', :collection => @import.uploads %>
+</tbody>
+
+</table>
+<% else %>
+(none)
+<% end %>
+</div>
+
+
+<div class="detail_block">
+<h2>Analyses</h2>
+<%= link_to image_tag('icons/add.png'), new_analysis_path(:defaults => {:import_id => @import.id}), :class => 'quick_link' %>
+This import has <%= @import.analyses.count %> associated analyses.
+<% if @import.uploads.count > 0 %>
+<table>
+<thead>
+	<tr>
+		<th>ID</th>
+		<th>By</th>
+		<th>Suggestions</th>
+		<th>Created</th>
+		<th>Actions</th>
+	</tr>
+</thead>
+<tbody>
+	<% @import.analyses.each do |row| %>
+	
+	<tr class="<%= cycle('light', 'dark', :name => 'analysis_row') %>">
+		<td><%= link_to h(row.id), row %></td>
+	  <td><%= link_to h(row.analyst.name), row.analyst %></td>
+		<td><%= link_to h(row.suggestions.count), row %></td>
+	  <td><%= row.created_at %></td>
+	  <td>
+			<%= link_to image_tag('icons/eye.png'), row %>
+			<%= link_to image_tag('icons/pencil.png'), edit_analysis_path(row) %>
+			<%= link_to image_tag('icons/bin_closed.png'), row, :confirm => 'Are you really, really sure?', :method => :delete %></td>
+	</tr>
+	<% end %>
+	
+</tbody>
+
+</table>
+<% else %>
+(none)
+<% end %>
+</div>

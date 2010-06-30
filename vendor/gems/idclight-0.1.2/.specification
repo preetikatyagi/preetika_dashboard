@@ -1,0 +1,107 @@
+--- !ruby/object:Gem::Specification 
+name: idclight
+version: !ruby/object:Gem::Version 
+  prerelease: false
+  segments: 
+  - 0
+  - 1
+  - 2
+  version: 0.1.2
+platform: ruby
+authors: 
+- Preston Lee
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-05-11 00:00:00 -07:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: thoughtbot-shoulda
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: hpricot
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        segments: 
+        - 0
+        - 8
+        version: "0.8"
+  type: :runtime
+  version_requirements: *id002
+description: A Ruby gem for accessing the freely available IDClight (IDConverter Light) web service, which convert between different types of gene IDs such as Hugo and Entrez. Queries are screen scraped from http://idclight.bioinfo.cnio.es.
+email: conmotto@gmail.com
+executables: 
+- convert.rb
+- ensembl_to_entrez.rb
+- ensembl_to_hugo.rb
+- hugo_to_ensembl.rb
+- hugo_to_entrez.rb
+extensions: []
+
+extra_rdoc_files: 
+- LICENSE
+- README.rdoc
+files: 
+- .document
+- .gitignore
+- .project
+- LICENSE
+- README.rdoc
+- Rakefile
+- VERSION
+- bin/convert.rb
+- bin/ensembl_to_entrez.rb
+- bin/ensembl_to_hugo.rb
+- bin/hugo_to_ensembl.rb
+- bin/hugo_to_entrez.rb
+- idclight.gemspec
+- lib/idclight.rb
+- test/helper.rb
+- test/test_idclight.rb
+has_rdoc: true
+homepage: http://github.com/preston/idclight
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.6
+signing_key: 
+specification_version: 3
+summary: Ruby programmnig interface to the IDCLight online database.
+test_files: 
+- test/helper.rb
+- test/test_idclight.rb

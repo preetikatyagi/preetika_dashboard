@@ -1,0 +1,12 @@
+<p>
+	<% concepts = Concept.find(:all, :order => 'name ASC').collect {|i| [ h(i.name), i.id ] } %>
+	<%= f.label :parent_id %>
+	<%= f.select("parent_id", concepts, { :include_blank => false, :selected => (@defaults ? @defaults[:parent_id].to_i : @subconcept.parent_id) }) %>
+</p>
+
+<p>
+	<% concepts = Concept.find(:all, :order => 'name ASC').collect {|i| [ h(i.name), i.id ] } %>
+	<%= f.label :child_id %>
+	<%= f.select("child_id", concepts, { :include_blank => false, :selected => (@defaults ? @defaults[:child_id].to_i : @subconcept.child_id) }) %>
+</p>
+
