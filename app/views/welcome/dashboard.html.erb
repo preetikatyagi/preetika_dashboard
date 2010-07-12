@@ -11,7 +11,34 @@
 <font face="Arial" size=4 color="green"><b>Welcome, <%= @sequencer%></b></font>
 <hr>
 <br>
-
+<!-- Job Display code begins-->
+<table>
+	<thead >
+	<tr>
+	    <th style="background-color: #006600;"><b>Patient</b></th>
+	    <th style="background-color: #006600;"><b>Sequencer</b></th>
+	    <th style="background-color: #006600;"><b>Type</b></th>
+	    <th style="background-color: #006600;"><b>Data File</b></th>
+		<th style="background-color: #006600;"><b>Last Update</b></th>
+	</tr>
+	</thead>
+<tbody>
+	<% @delayed_jobs.each do |delayed_job| %>
+	 <tr>
+	<% @uploadIDArr =  delayed_job.handler.split("upload_id:") %>
+	<% @uploadID=@uploadIDArr[1].strip %>
+	<% @uploadID="807296141" %> <!-- to be removed later (hard code) -->
+	<% @importID = Upload.find(@uploadID).import.id %>
+<td style="background-color: #999900;"><font color = "#FFFFFF"><%= Import.find(@importID).patient.name %></font></td>
+<td style="background-color: #999900;"><font color = "#FFFFFF"><%= Import.find(@importID).importer.name %></font></td>
+<td style="background-color: #999900;"><font color = "#FFFFFF">Type</font></td>
+<td style="background-color: #999900;"><font color = "#FFFFFF"><%= Upload.find(@uploadID).data_file_name %></font></td>
+<td style="background-color: #999900;"><font color = "#FFFFFF"><%=h delayed_job.updated_at %></font></td>
+	 </tr>
+	<% end %>
+</tbody>		
+</table>
+<!-- Job Display code ends-->
 <% form_for(@upload, :html => {:multipart => true}) do |f| %>
 <%= f.error_messages %>	
 		<font face="Arial" size=4 color="#996600"><b>Quick Import</b></font>
