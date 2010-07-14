@@ -1,3 +1,6 @@
+var nodeId = '';
+var action = 'NA';
+var newPath = 'NA';
 (function () { 
 
 /*
@@ -7015,11 +7018,46 @@ this.Hypertree = new Class({
       
     */ 
     onClick: function(id, opt) { 
-	
         var pos = this.graph.getNode(id).pos.getc(true); 
 		idd = id.substring(4);
-		alert(id);
-		window.open("../concepts/"+idd+".html","mywindow","width=400,height=400,scrollbars=yes");
+		nodeId = id;
+	
+		if(document.action == 'add' && id == 'DrugNode')
+		{
+			window.open(".." + document.newPath,"mywindow","width=400,height=400,scrollbars=yes");
+		}
+		if(document.action == 'add' && id != 'DrugNode')
+		{
+			alert("Please click on Drug to add a new drug");
+		}
+		else if(document.action == 'add' && id == 'GeneNode')
+		{
+			//window.open(".." + document.newPath,"mywindow","width=400,height=400,scrollbars=yes");
+		}
+		else if(document.action == 'edit')
+		{
+			//window.open("../concepts/"+idd+".html","mywindow","width=400,height=400,scrollbars=yes");//
+			window.open("../drugs/"+idd+"/edit.html","mywindow","width=400,height=400,scrollbars=yes");
+		}
+		else if(document.action == 'remove')
+		{
+			if(id == 'DrugNode' || id == 'GeneNode')
+			{
+				alert("Cannot be deleted.Sorry!")
+			}
+			else
+			{
+				alert("Remove Node");
+			}
+		}
+		else if(document.action == 'centre' || action == 'NA')
+		{
+			this.move(pos, opt); 
+		}
+		
+		// window.open("../drugs/"+idd+"/edit.html","mywindow","width=400,height=400,scrollbars=yes");
+	//	alert(action);
+//	window.open("../drugs/"+idd+".html","mywindow","width=400,height=400,scrollbars=yes"));
 	//	window.open ("http://localhost:3000/EditGraph/edit.html.erb","Window Title","status=0,toolbar=0,location=0,menubar=0,directories=0,resizable=1, scrollbars=0,height=0,width=0");
 	
 		
@@ -9049,3 +9087,8 @@ TM.Strip = new Class({
   }
 });
  })();
+function callMe()
+{
+	alert("call me");
+	this.Hypertree.performAction();
+}

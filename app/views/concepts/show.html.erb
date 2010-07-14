@@ -17,9 +17,13 @@
 <script type="text/javascript">
 init_concept_visualization("<%= concept_path(@concept, :format => :json) %>");
 </script>
+<!-- Added by Preetika Tyagi -->
+<br><br>
+<button type="button" onclick = "selectAction('add','<%= new_treatment_path(:defaults => {:concept_id => @concept.id}) %>')">Add</button>
+<button type="button" onclick = "selectAction('edit','')">Edit</button>
+<button type="button" onclick = "selectAction('remove','')">Remove</button>
+<button type="button" onclick = "selectAction('centre','')">Centre</button>
 </div>
-
-
 <div class="detail_block">
 <h2>Properties</h2>
 <p>
@@ -163,14 +167,6 @@ init_concept_visualization("<%= concept_path(@concept, :format => :json) %>");
 </div>
 
 <br class="clear"/>
-<!-- Added by Preetika Tyagi -->
+
 <% else%>
-Choose one action to perform:
-<br><br>
-<form name=myText>
-<input type="text" id=myText name=myText value="">
-</form>
-<button type="button" onclick = "editNode('',document.getElementById('myText').value)">Edit</button>
-<button type="button" onclick = "closeWindow()">Cancel</button>
-<button type="button" onclick = "deleteNode('','')">Remove</button>
 <% end %>

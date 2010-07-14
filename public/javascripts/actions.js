@@ -1,21 +1,26 @@
-function editNode(id, newVal) {
-	if(newVal=='')
+function selectAction(action,str)
+{
+
+	if(action=='add')
 	{
-		alert("Not a valid value");
+		document.action = 'add';
+		document.newPath = str;
 	}
-	else
+	else if(action =='edit')
 	{
-		var conf = confirm("Are you surely want to edit the node?");
-		if (conf) {
-			window.opener.location = window.opener.location;
-			window.close();
-		}
+		document.action = 'edit';
+//		alert('edit call');
+	//	alert(window.opener.callMe());
+		//window.opener.this.Hypertree.performAction();
+	
 	}
-}
-function closeWindow() {
-	window.close();
-}
-function deleteNode(id, viz) {
-	window.opener.abc();
-	window.close();
+	else if(action == 'remove')
+	{
+		document.action = 'remove';
+		
+	}
+	else if(action == 'centre')
+	{
+		document.action = 'centre';	
+	}
 }
