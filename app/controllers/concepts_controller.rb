@@ -22,7 +22,14 @@ class ConceptsController < ApplicationController
 
   # GET /concepts/1
   # GET /concepts/1.xml
+  def editgraph
+    
+  end
+  
   def show
+    @flag = 'no'
+    if Concept.exists?(params[:id])
+    @flag = 'yes'
     @concept = Concept.find(params[:id], :include => [{:members => [:gene]}, {:treatments => [:drug]}])
 
     respond_to do |format|
@@ -34,6 +41,7 @@ class ConceptsController < ApplicationController
 		render :json => j
 		}
     end
+  end
   end
 
   # GET /concepts/new
@@ -97,4 +105,5 @@ class ConceptsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
 end

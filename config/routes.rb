@@ -24,13 +24,17 @@ ActionController::Routing::Routes.draw do |map|
   map.process '/genes/attempt_id_conversions', :controller => 'genes', :action => 'attempt_id_conversions'
   map.process '/uploads/:id/link_samples_to_genes', :controller => 'uploads', :action => 'link_samples_to_genes'
   map.process '/uploads/:id/unlink_samples_to_genes', :controller => 'uploads', :action => 'unlink_samples_to_genes'
+  
+  #map.connect '/concepts/:editgraph', :controller => 'concepts', :action => 'editgraph'
+  
+  #map.connect 'concepts/:id', :controller => 'concepts', :action => 'editgraph'
   # map.samples '/uploads/:id/samples', :controller => 'uploads', :actions => 'samples'
 
   map.resources :orientations
   map.resources :aberrations
   map.resources :phenotypes
   map.resources :subconcepts
-  map.resources :analyses
+  map.resources :analyses  
   map.resources :concepts
   map.resources :drugs
   map.resources :formats
@@ -44,6 +48,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :uploads
   map.resources :users
   map.resources :roles
+  
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -84,7 +90,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

@@ -1,3 +1,6 @@
+<!-- Added by Preetika Tyagi -->
+<% if @flag == 'yes'%>
+
 <div class="concept">
 	
 <h1><%= @title = "#{h @concept.name} (Sensitivity Concept)" %>
@@ -10,6 +13,7 @@
 <%= render_concept_tree(@concept)%>
 <div id="concept_visualization" class="visualization">
 </div>
+
 <script type="text/javascript">
 init_concept_visualization("<%= concept_path(@concept, :format => :json) %>");
 </script>
@@ -159,3 +163,14 @@ init_concept_visualization("<%= concept_path(@concept, :format => :json) %>");
 </div>
 
 <br class="clear"/>
+<!-- Added by Preetika Tyagi -->
+<% else%>
+Choose one action to perform:
+<br><br>
+<form name=myText>
+<input type="text" id=myText name=myText value="">
+</form>
+<button type="button" onclick = "editNode('',document.getElementById('myText').value)">Edit</button>
+<button type="button" onclick = "closeWindow()">Cancel</button>
+<button type="button" onclick = "deleteNode('','')">Remove</button>
+<% end %>

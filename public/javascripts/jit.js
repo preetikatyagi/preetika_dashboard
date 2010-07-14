@@ -7015,8 +7015,15 @@ this.Hypertree = new Class({
       
     */ 
     onClick: function(id, opt) { 
+	
         var pos = this.graph.getNode(id).pos.getc(true); 
-        this.move(pos, opt); 
+		idd = id.substring(4);
+		alert(id);
+		window.open("../concepts/"+idd+".html","mywindow","width=400,height=400,scrollbars=yes");
+	//	window.open ("http://localhost:3000/EditGraph/edit.html.erb","Window Title","status=0,toolbar=0,location=0,menubar=0,directories=0,resizable=1, scrollbars=0,height=0,width=0");
+	
+		
+//        this.move(pos, opt); 
     }, 
      
     /* 
@@ -9041,9 +9048,4 @@ TM.Strip = new Class({
     return ans;
   }
 });
-
-
-
-
-
  })();
