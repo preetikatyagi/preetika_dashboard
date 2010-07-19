@@ -19,10 +19,10 @@ init_concept_visualization("<%= concept_path(@concept, :format => :json) %>");
 </script>
 <!-- Added by Preetika Tyagi -->
 <br><br>
-<button type="button" onclick = "selectAction('add','<%= new_treatment_path(:defaults => {:concept_id => @concept.id}) %>')">Add</button>
-<button type="button" onclick = "selectAction('edit','')">Edit</button>
-<button type="button" onclick = "selectAction('remove','')">Remove</button>
-<button type="button" onclick = "selectAction('centre','')">Centre</button>
+<button id = 'add' type="button" style = "background:white" onclick = "selectAction('add','<%= new_treatment_path(:defaults => {:concept_id => @concept.id}) %>')">Add</button>
+<button id='edit' type="button" style = "background:white" onclick = "selectAction('edit','')">Edit</button>
+<button id = 'remove' type="button" style = "background:white" onclick = "selectAction('remove','')">Remove</button>
+<button id = 'centre' type="button" style = "background:red" onclick = "selectAction('centre','')">Centre</button>
 </div>
 <div class="detail_block">
 <h2>Properties</h2>

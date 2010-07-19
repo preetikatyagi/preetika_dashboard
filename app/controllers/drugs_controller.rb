@@ -45,7 +45,7 @@ class DrugsController < ApplicationController
 		}
     end
   end
-
+  
   # GET /drugs/1
   # GET /drugs/1.xml
   def show

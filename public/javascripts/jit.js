@@ -7037,7 +7037,8 @@ this.Hypertree = new Class({
 		else if(document.action == 'edit')
 		{
 			//window.open("../concepts/"+idd+".html","mywindow","width=400,height=400,scrollbars=yes");//
-			window.open("../drugs/"+idd+"/edit.html","mywindow","width=400,height=400,scrollbars=yes");
+//			window.open("../drugs/"+idd+"/edit.html","mywindow","width=400,height=400,scrollbars=yes");
+			window.open("../drugs/edit1.html","mywindow","width=400,height=400,scrollbars=yes");
 		}
 		else if(document.action == 'remove')
 		{

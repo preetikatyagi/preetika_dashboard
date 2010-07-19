@@ -3,71 +3,72 @@
 .submitbutton {
  color: #fff;
  font-size: 5;
- background-color: #996600;
+ background-color: #817339;
+ font-weight:bold;
  border: none;
 }
 </style>
 <!--Display Welcome Message-->
-<font face="Arial" size=4 color="green"><b>Welcome, <%= @sequencer%></b></font>
+<font face="Arial" size=4 color="#817339"><b>Welcome, <%= @sequencer%></b></font>
 <hr>
 <br>
 <!-- Job Display code begins-->
-<table>
-	<thead >
+<table border>
+
 	<tr>
-	    <th style="background-color: #006600;"><b>Patient</b></th>
-	    <th style="background-color: #006600;"><b>Sequencer</b></th>
-	    <th style="background-color: #006600;"><b>Type</b></th>
-	    <th style="background-color: #006600;"><b>Data File</b></th>
-		<th style="background-color: #006600;"><b>Last Update</b></th>
+	    <td style="background-color: #817339;"><font color = "#FFFFFF"><b>Patient</b></font></th>
+	    <td style="background-color: #817339;"><font color = "#FFFFFF"><b>Sequencer</b></font></th>
+	    <td style="background-color: #817339;"><font color = "#FFFFFF"><b>Type</b></font></th>
+	    <td style="background-color: #817339;"><font color = "#FFFFFF"><b>Data File</b></font></th>
+		<td style="background-color: #817339;"><font color = "#FFFFFF"><b>Last Update</b></font></th>
 	</tr>
-	</thead>
-<tbody>
+
+
 	<% @delayed_jobs.each do |delayed_job| %>
 	 <tr>
 	<% @uploadIDArr =  delayed_job.handler.split("upload_id:") %>
 	<% @uploadID=@uploadIDArr[1].strip %>
 	<% @uploadID="807296141" %> <!-- to be removed later (hard code) -->
 	<% @importID = Upload.find(@uploadID).import.id %>
-<td style="background-color: #999900;"><font color = "#FFFFFF"><%= Import.find(@importID).patient.name %></font></td>
-<td style="background-color: #999900;"><font color = "#FFFFFF"><%= Import.find(@importID).importer.name %></font></td>
-<td style="background-color: #999900;"><font color = "#FFFFFF">Type</font></td>
-<td style="background-color: #999900;"><font color = "#FFFFFF"><%= Upload.find(@uploadID).data_file_name %></font></td>
-<td style="background-color: #999900;"><font color = "#FFFFFF"><%=h delayed_job.updated_at %></font></td>
+<td style="background-color: #ADA96E;"><font color = "#000000"><%= Import.find(@importID).patient.name %></font></td>
+<td style="background-color: #ADA96E;"><font color = "#000000"><%= Import.find(@importID).importer.name %></font></td>
+<td style="background-color: #ADA96E;"><font color = "#000000">Type</font></td>
+<td style="background-color: #ADA96E;"><font color = "#000000"><%= Upload.find(@uploadID).data_file_name %></font></td>
+<td style="background-color: #ADA96E;"><font color = "#000000"><%=h delayed_job.updated_at %></font></td>
 	 </tr>
 	<% end %>
-</tbody>		
+		
 </table>
 <!-- Job Display code ends-->
 <% form_for(@upload, :html => {:multipart => true}) do |f| %>
 <%= f.error_messages %>	
-		<font face="Arial" size=4 color="#996600"><b>Quick Import</b></font>
+		<font face="Arial" size=4 color="#817339"><b>Quick Import</b></font>
 			<div style="border-style: double;width:400px;align:center;">
 			<p style="text-align:right;">
 			<%= link_to '[create new patient import package]', new_import_path, :class => 'quick_link' %>
 			</p>
 			<hr>
 			<p>
-				<font face="Times New Roman" size=4 color="#996600">
+				<font face="Times New Roman" size=4 color="#817339">
 					<%= f.label :Patient %>&nbsp;&nbsp;&nbsp;&nbsp;	
 				</font>
 					<%= text_field_tag('patientName', '', :size => '4', :maxlength => '') %>
 			</p>
 			<p>
-				<font face="Times New Roman" size=4 color="#996600">
+				<font face="Times New Roman" size=4 color="#817339">
 					<%= f.label :Aberration %>&nbsp;&nbsp;&nbsp;&nbsp;	
 				</font>
 					<%= text_field_tag('aberration', '', :size => '4', :maxlength => '') %>
 			</p>
 			<p>
 			<% imports = Import.find(:all).collect {|i| [ h("##{i.id} (#{i.patient.name})"), i.id ] } %>
-			<font face="Times New Roman" size=4 color="#996600">
+			<font face="Times New Roman" size=4 color="#817339">
 				<%= f.label :import_id %>&nbsp;&nbsp;&nbsp;&nbsp;
 			</font>
 			<%= f.select("import_id", imports, { :include_blank => false, :selected => (@defaults ? 		@defaults[:import_id].to_i : @upload.import_id) }) %>
 			</p>
 			<p>
-				<font face="Times New Roman" size=4 color="#996600">
+				<font face="Times New Roman" size=4 color="#817339">
 					<%= f.label :data %>&nbsp;&nbsp;&nbsp;&nbsp;	<%= f.file_field :data %>
 				</font>
 			</p>
